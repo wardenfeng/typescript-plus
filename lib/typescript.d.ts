@@ -17,7 +17,6 @@ declare namespace ts {
     const versionMajorMinor = "3.1";
     /** The version of the TypeScript compiler release */
     const version: string;
-    const version_plus = "3.1.5";
 }
 declare namespace ts {
     /**
@@ -692,7 +691,6 @@ declare namespace ts {
         parent: ClassLikeDeclaration | ObjectLiteralExpression;
         name: PropertyName;
         body?: FunctionBody;
-        isJumpTarget?: boolean;
     }
     interface ConstructorDeclaration extends FunctionLikeDeclarationBase, ClassElement, JSDocContainer {
         kind: SyntaxKind.Constructor;
@@ -1333,7 +1331,6 @@ declare namespace ts {
         typeParameters?: NodeArray<TypeParameterDeclaration>;
         heritageClauses?: NodeArray<HeritageClause>;
         members: NodeArray<ClassElement>;
-        typeNames?: string[];
     }
     interface ClassDeclaration extends ClassLikeDeclarationBase, DeclarationStatement {
         kind: SyntaxKind.ClassDeclaration;
@@ -2509,11 +2506,6 @@ declare namespace ts {
         /** Paths used to compute primary types search locations */
         typeRoots?: string[];
         esModuleInterop?: boolean;
-        accessorOptimization?: boolean;
-        defines?: MapLike<any>;
-        emitReflection?: boolean;
-        noEmitJs?: boolean;
-        reorderFiles?: boolean;
         [option: string]: CompilerOptionsValue | TsConfigSourceFile | undefined;
     }
     interface TypeAcquisition {
@@ -4146,13 +4138,6 @@ declare namespace ts {
      * @param context A lexical environment context for the visitor.
      */
     function visitEachChild<T extends Node>(node: T | undefined, visitor: Visitor, context: TransformationContext, nodesVisitor?: typeof visitNodes, tokenVisitor?: Visitor): T | undefined;
-}
-declare namespace ts {
-    interface SortingResult {
-        sortedFileNames: string[];
-        circularReferences: string[];
-    }
-    function reorderSourceFiles(program: Program): SortingResult;
 }
 declare namespace ts {
     function createPrinter(printerOptions?: PrinterOptions, handlers?: PrintHandlers): Printer;
