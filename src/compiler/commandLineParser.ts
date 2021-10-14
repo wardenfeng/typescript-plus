@@ -782,32 +782,7 @@ namespace ts {
                 type: "object"
             },
             description: Diagnostics.List_of_language_service_plugins
-        },
-        // extra options
-        {
-            name: "accessorOptimization",
-            type: "boolean"
-        },
-        {
-            // this option can only be specified in tsconfig.json
-            // use type = object to copy the value as-is
-            name: "defines",
-            type: "object",
-            isTSConfigOnly: true
-        },
-        {
-            name: "emitReflection",
-            type: "boolean"
-        },
-        {
-            name: "noEmitJs",
-            type: "boolean"
-        },
-        {
-            name: "reorderFiles",
-            type: "boolean"
         }
-        
     ];
 
     /* @internal */
@@ -1159,8 +1134,7 @@ namespace ts {
 
     /* @internal */
     export function printVersion() {
-        sys.write("Version : " + ts.version_plus + sys.newLine);
-        sys.write("typescript-version : " + ts.version + sys.newLine);
+        sys.write(getDiagnosticText(Diagnostics.Version_0, version) + sys.newLine);
     }
 
     /* @internal */
